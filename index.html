@@ -3,59 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kankanba Farm — Job Application</title>
+  <title>Kankanba Farm — Careers</title>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background: #f4f7f4;
+    :root {
+      --green: #2E7D32;
+      --dark-green: #1B5E20;
+      --light-green: #E8F5E9;
+      --grey: #555555;
     }
-    iframe {
-      display: block;
-      border: none;
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(180deg, #eef6ee 0%, #f7faf7 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: #2a2a2a;
+    }
+    .card {
+      max-width: 480px;
       width: 100%;
-      height: 100vh;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      overflow: hidden;
+      text-align: center;
+    }
+    .card-header {
+      background: var(--dark-green);
+      color: #fff;
+      padding: 26px 20px 22px 20px;
+    }
+    .card-header h1 {
+      margin: 10px 0 2px 0;
+      font-size: 22px;
+      letter-spacing: 0.5px;
+    }
+    .card-header p {
+      margin: 0;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--light-green);
+    }
+    .card-body {
+      padding: 28px 26px 32px 26px;
+    }
+    .card-body h2 {
+      color: var(--dark-green);
+      font-size: 19px;
+      margin: 0 0 10px 0;
+    }
+    .card-body p {
+      color: var(--grey);
+      font-size: 14.5px;
+      line-height: 1.5;
+      margin: 0 0 24px 0;
+    }
+    .apply-btn {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 38px;
+      border-radius: 30px;
+      transition: background 0.15s;
+    }
+    .apply-btn:hover { background: var(--dark-green); }
+    footer {
+      font-size: 12px;
+      color: var(--grey);
+      padding: 16px;
+      border-top: 1px solid #eee;
     }
   </style>
 </head>
 <body>
-  <!--
-    Google Apps Script web apps often fail to load inside an iframe on
-    mobile browsers (iOS Safari, Android Chrome, and in-app browsers like
-    Facebook/WhatsApp) because those browsers block the third-party
-    cookies Apps Script needs to verify the session. The error looks like:
-    "Sorry, unable to open this file at this time."
-
-    Fix: on mobile, skip the iframe entirely and send the visitor straight
-    to the real form URL (a normal top-level page load, not embedded).
-    Desktop visitors still get the clean embedded version so the address
-    bar stays on this page.
-  -->
-  <script>
-    var FORM_URL = "https://script.google.com/macros/s/AKfycbxA8g6hGVu0t9IJforj8HJCSVbqI8VIINYE8ynRk18ExBlRaFWSS9HCxRVHkbyqnjYTtQ/exec";
-
-    function isMobile() {
-      return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-    }
-
-    if (isMobile()) {
-      window.top.location.href = FORM_URL;
-    } else {
-      document.write(
-        '<iframe src="' + FORM_URL + '" ' +
-        'title="Kankanba Farm Job Application Form" ' +
-        'allow="clipboard-write" ' +
-        'style="display:block;border:none;width:100%;height:100vh;"></iframe>'
-      );
-    }
-  </script>
-
-  <noscript>
-    <p style="font-family:sans-serif;text-align:center;margin-top:40px;">
-      Please <a href="https://script.google.com/macros/s/AKfycbxA8g6hGVu0t9IJforj8HJCSVbqI8VIINYE8ynRk18ExBlRaFWSS9HCxRVHkbyqnjYTtQ/exec">click here</a>
-      to open the Kankanba Farm application form.
-    </p>
-  </noscript>
+  <div class="card">
+    <div class="card-header">
+      <h1>KANKANBA FARM</h1>
+      <p>Sanyang, The Gambia</p>
+    </div>
+    <div class="card-body">
+      <h2>We're Hiring!</h2>
+      <p>
+        Kankanba Farm is looking for a Farm Manager and Agro-Technicians
+        (Plant &amp; Animal Domain). No written CV required — click below
+        to fill in a simple application form.
+      </p>
+      <a class="apply-btn" href="Form.html">Click here to apply</a>
+    </div>
+    <footer>
+      For help applying, call 2630798 / 5944287
+    </footer>
+  </div>
 </body>
 </html>
