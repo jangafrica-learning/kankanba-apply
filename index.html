@@ -21,14 +21,41 @@
 </head>
 <body>
   <!--
-    This page just embeds the live application form.
-    Replace the src URL below any time you redeploy the Apps Script
-    (Deploy -> Manage deployments -> your Web App URL).
+    Google Apps Script web apps often fail to load inside an iframe on
+    mobile browsers (iOS Safari, Android Chrome, and in-app browsers like
+    Facebook/WhatsApp) because those browsers block the third-party
+    cookies Apps Script needs to verify the session. The error looks like:
+    "Sorry, unable to open this file at this time."
+
+    Fix: on mobile, skip the iframe entirely and send the visitor straight
+    to the real form URL (a normal top-level page load, not embedded).
+    Desktop visitors still get the clean embedded version so the address
+    bar stays on this page.
   -->
-  <iframe
-    src="https://script.google.com/macros/s/AKfycbxA8g6hGVu0t9IJforj8HJCSVbqI8VIINYE8ynRk18ExBlRaFWSS9HCxRVHkbyqnjYTtQ/exec"
-    title="Kankanba Farm Job Application Form"
-    allow="clipboard-write"
-  ></iframe>
+  <script>
+    var FORM_URL = "https://script.google.com/macros/s/AKfycbxA8g6hGVu0t9IJforj8HJCSVbqI8VIINYE8ynRk18ExBlRaFWSS9HCxRVHkbyqnjYTtQ/exec";
+
+    function isMobile() {
+      return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+    }
+
+    if (isMobile()) {
+      window.top.location.href = FORM_URL;
+    } else {
+      document.write(
+        '<iframe src="' + FORM_URL + '" ' +
+        'title="Kankanba Farm Job Application Form" ' +
+        'allow="clipboard-write" ' +
+        'style="display:block;border:none;width:100%;height:100vh;"></iframe>'
+      );
+    }
+  </script>
+
+  <noscript>
+    <p style="font-family:sans-serif;text-align:center;margin-top:40px;">
+      Please <a href="https://script.google.com/macros/s/AKfycbxA8g6hGVu0t9IJforj8HJCSVbqI8VIINYE8ynRk18ExBlRaFWSS9HCxRVHkbyqnjYTtQ/exec">click here</a>
+      to open the Kankanba Farm application form.
+    </p>
+  </noscript>
 </body>
 </html>
